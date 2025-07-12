@@ -41,4 +41,6 @@ class KMEANS:
             print(f"Error occured while training the KMeans model: {e}")
             traceback.print_exc()
 
+    def get_model(self):
 
+        return self.kmeans

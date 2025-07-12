@@ -86,7 +86,23 @@ class SOM:
         """
         self.weights = np.load(path)
 
-    
+    def evaluate_som_model(self, input_data):
+
+        """
+        
+        This function is used to evaluate SOM model.
+        
+        """
+
+        errors = []
+        for vector in input_data:
+            diff = self.weights - vector
+            distances = np.sum(diff**2, axis=2)
+            min_dist = np.min(distances)
+            errors.append(min_dist)
+            
+        return np.mean(errors)
+
     def predict(self):
 
         """

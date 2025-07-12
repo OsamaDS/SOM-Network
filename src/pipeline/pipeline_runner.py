@@ -2,8 +2,11 @@ from src.pipeline.data_ingestion import load_data
 from src.pipeline.data_validation import validate_data
 from src.pipeline.feature_engineering import build_feature
 from src.pipeline.model_trainer import train_model
+from src.pipeline.model_evaluator import evaluate_model
 from src.som.config import load_train_config
 from src.utils.logger import get_logger
+from src.utils.utils import load_model
+import numpy as np
 import traceback
 
 logger = get_logger()
@@ -43,6 +46,15 @@ def run_pipeline():
         logger.info("🧠 Training model...")
         train_model(features, config)
         logger.info("✅ Model trained successfully...")
+
+        som_model = load_model(config['artifacts']['model_path'])
+        kmeans_model = load_model(config['artifacts']['kmeans_model_path'])
+        input_data = input_data = np.load(config['feature-store']['output_path'])
+
+        logger.info("📈 Evaluating model...")
+        metrics = evaluate_model(som_model, input_data, kmeans_model)
+        logger.info(f"Model metrics: {metrics}")
+
 
 
 

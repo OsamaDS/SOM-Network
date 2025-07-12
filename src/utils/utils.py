@@ -15,7 +15,7 @@ def save_model(model, path):
 
     print(f"Model saved to path: {model_path}")
 
-def load_som_model(path):
+def load_model(path):
 
     """
 
@@ -29,3 +29,4 @@ def load_som_model(path):
         model = pickle.load(f)
 
     return model
+
