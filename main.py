@@ -1,17 +1,10 @@
-import pandas as pd
-import numpy as np
-from src.som.model import SOM
-from src.som.config import DATA_PATH
+from src.pipeline.pipeline_runner import run_pipeline
 
 def main():
     print("Hello from mantel-group!")
 
-    print("Loading data...")
-    df = pd.read_csv(DATA_PATH)
-    print("Data loaded successfully!")
-
-    print("Initializing SOM model...")
-    som = SOM(data=df)
+    run_pipeline()
+    
 
 
 if __name__ == "__main__":

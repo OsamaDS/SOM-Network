@@ -1,9 +1,13 @@
 import pandas as pd
 import numpy as np
+from src.utils.logger import get_logger
+
+logger = get_logger()
 
 class SOM:
 
-    def __init__(self, data=None):
+    def __init__(self, width, height, input_dim, learning_rate=0.5, sigma=None,
+                n_max_iterations=1000):
 
         """
         
@@ -13,69 +17,75 @@ class SOM:
         
         """
 
-        self.df = data
+        self.width = width
+        self.height = height
+        self.input_len = input_dim
+        self.learning_rate = learning_rate
+        self.sigma = sigma or max(width, height) / 2
+        self.n_max_iterations = n_max_iterations
 
-    def preprocess_data(self):
+        # Initialize weights
+        self.weights = np.random.random((width, height, input_dim))
 
-        """
-        
-        This method preprocesses the input data.
-        It handles missing values, normalizes the data, and converts categorical variables to numerical format.
-        
-        """
-
-        pass
+        # Precompute neuron grid
+        X, Y = np.meshgrid(np.arange(width), np.arange(height), indexing='ij')
+        self.grid = np.stack([X, Y], axis=2)
     
-    def train(input_data, n_max_iterations, width, height):
+    def train(self, input_data):
 
         """
         
         Train the model using the SOM algorithm.
         
         """
+        logger.info("🧠 1- Training of SOM model started...")
+        lambda_ = self.n_max_iterations / np.log(self.sigma)
+        alpha0 = self.learning_rate
+        sigma0 = self.sigma
 
-        σ0 = max(width, height) / 2
-        α0 = 0.5
-        weights = np.random.random((width, height, input_data.shape[1]))
-        λ = n_max_iterations / np.log(σ0)
-
-        # Precompute grid coordinates
-        X, Y = np.meshgrid(np.arange(width), np.arange(height), indexing='ij')
-        grid = np.stack([X, Y], axis=2)  # shape: (width, height, 2)
-
-        for t in range(n_max_iterations):
-            σt = σ0 * np.exp(-t / λ)
-            αt = α0 * np.exp(-t / λ)
+        for t in range(self.n_max_iterations):
+            alpha_t = alpha0 * np.exp(-t / lambda_)
+            sigma_t = sigma0 * np.exp(-t / lambda_)
 
             for vt in input_data:
-                # Find BMU
-                diff = weights - vt
+                diff = self.weights - vt
                 distances = np.sum(diff**2, axis=2)
                 bmu_index = np.argmin(distances)
-                bmu_coords = np.unravel_index(bmu_index, (width, height))
+                bmu_coords = np.unravel_index(bmu_index, (self.width, self.height))
 
-                # Compute distance of all neurons to BMU
-                d_grid = np.sum((grid - bmu_coords)**2, axis=2)  # shape: (width, height)
+                d_grid = np.sum((self.grid - bmu_coords)**2, axis=2)
+                theta_t = np.exp(-d_grid / (2 * sigma_t**2))[..., np.newaxis]
 
-                # Compute neighborhood influence
-                θt = np.exp(-d_grid / (2 * σt**2))  # shape: (width, height)
-                θt = θt[..., np.newaxis]  # shape: (width, height, 1) for broadcasting
+                self.weights += alpha_t * theta_t * (vt - self.weights)
 
-                # Update weights
-                weights += αt * θt * (vt - weights)
+        logger.info("✅ 1- Training of SOM model Finished...")
 
-        return weights
+    def get_weights(self):
 
-    def fit(self):
+        """
+        This method returns the current weights of the SOM model.
+
+        """
+        return self.weights
+
+    def save_weights(self, path):
 
         """
 
-        This method trains the SOM model on the input data.
-        It initializes the weights of the model and iteratively updates them based on the input data.
-        
+        This method saves the current weights of the SOM model to a specified path.
+
+        """
+        np.save(path, self.weights)
+
+    def load_weights(self, path):
+
         """
 
-        pass
+        This method loads the weights of the SOM model from a specified path.
+
+        """
+        self.weights = np.load(path)
+
     
     def predict(self):
 
@@ -85,5 +95,4 @@ class SOM:
         It returns the cluster assignments for each input data point.
         
         """
-
         pass
