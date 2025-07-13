@@ -85,15 +85,35 @@ som_project/
 
 ## 🚀 How to Run Locally
 
-### 1. Install dependencies
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/OsamaDS/SOM-Network.git
+```
+
+### 2. Install dependencies
 
 ```bash
 uv pip install --system .
 ```
 
-### 1. Start FastAPI server
+### 3. Start FastAPI server
 
 ```bash
 uvicorn main:app --reload --port 9000
+```
+
+## 🚀 How to Run using Docker
+
+### 1. Pull the image
+
+```bash
+docker pull osamads/som-api
+```
+
+### 2. Run the container
+
+```bash
+docker run -d -p 9000:9000 osamads/som-api
 ```
 
