@@ -11,6 +11,7 @@ This project implements a **Self-Organizing Map (SOM)** combined with **KMeans c
 
 ## 📁 Project Structure
 
+```
 som_project/
 │
 ├── src/
@@ -82,7 +83,7 @@ som_project/
 ├── Dockerfile
 ├── pyproject.toml
 └── uv.lock
-
+```
 
 ## System Architecture Diagram
 ![alt text](diagram-export-7-13-2025-12_23_11-PM.png)
