@@ -11,48 +11,48 @@ This project implements a **Self-Organizing Map (SOM)** combined with **KMeans c
 
 ## 📁 Project Structure
 
-```
+```text
 som_project/
 │
 ├── src/
-│   ├── som/                            # Core SOM logic
+│   ├── som/                      # Core SOM logic
 │   │   ├── __init__.py
 │   │   ├── model.py
 │   │   ├── utils.py
 │   │   └── config.py
-│
-│   ├── kmeans/                         # Modular KMeans logic
+│   │
+│   ├── kmeans/                   # Modular KMeans logic
 │   │   ├── __init__.py
-│   │   ├── cluster.py                  # Cluster SOM weights
-│   │   └── evaluator.py                # Silhouette score, elbow, etc.
-│
+│   │   ├── cluster.py            # Cluster SOM weights
+│   │   └── evaluator.py          # Silhouette score, elbow, etc.
+│   │
 │   ├── features/
 │   │   ├── __init__.py
 │   │   ├── generate_features.py
 │   │   ├── loader.py
 │   │   └── feature_registry.json
-│
+│   │
 │   ├── pipeline/
 │   │   ├── __init__.py
 │   │   ├── data_ingestion.py
 │   │   ├── data_validation.py
 │   │   ├── feature_engineering.py
-│   │   ├── model_trainer.py           # ✅ Now includes SOM + KMeans
+│   │   ├── model_trainer.py      # ✅ Includes SOM + KMeans
 │   │   ├── model_evaluator.py
 │   │   └── pipeline_runner.py
-│
+│   │
 │   ├── api/
 │   │   ├── __init__.py
 │   │   ├── main.py
 │   │   └── routes.py
-│
+│   │
 │   └── visualizer/
 │       ├── __init__.py
 │       ├── plots.py
 │       └── label_overlay.py
 │
 ├── configs/
-│   └── train_config.yaml               # Contains both SOM + KMeans settings
+│   └── train_config.yaml         # Configs for SOM + KMeans
 │
 ├── data/
 │   ├── raw/
@@ -69,21 +69,16 @@ som_project/
 │   │   └── clustering_metrics.json
 │   └── plots/
 │
-├
-│   
-│   
-│
 ├── notebooks/
-│
 ├── scripts/
-│
 ├── .github/
-│
-├── README.md
+│   └── workflows/
+│       └── deploy.yml
 ├── Dockerfile
 ├── pyproject.toml
-└── uv.lock
-```
+├── uv.lock
+└── README.md
+
 
 ## System Architecture Diagram
 ![alt text](diagram-export-7-13-2025-12_23_11-PM.png)
