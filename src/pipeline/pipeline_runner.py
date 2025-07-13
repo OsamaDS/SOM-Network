@@ -51,6 +51,7 @@ def run_pipeline():
         kmeans_model = load_model(config['artifacts']['kmeans_model_path'])
         input_data = input_data = np.load(config['feature-store']['output_path'])
 
+        # Step 5: Evaluate the model
         logger.info("📈 Evaluating model...")
         metrics = evaluate_model(som_model, input_data, kmeans_model)
         logger.info(f"Model metrics: {metrics}")
