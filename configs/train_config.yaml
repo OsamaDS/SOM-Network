@@ -10,7 +10,7 @@ feature-store:
 
 som-model:
   grid_size: [15, 15]
-  sigma: 1.0
+  sigma: 0.5
   learning_rate: 0.5
   num_iterations: 5000
   input_dim: 3

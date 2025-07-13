@@ -103,12 +103,3 @@ class SOM:
             
         return np.mean(errors)
 
-    def predict(self):
-
-        """
-        
-        This method predicts the output of the SOM model for the input data.
-        It returns the cluster assignments for each input data point.
-        
-        """
-        pass

@@ -30,6 +30,7 @@ class KMEANS:
 
             logger.info("🧠 2- Training of cluster model started...")
             flattened_weights = self.som_weights.reshape(-1, self.input_dim)
+            print("Flattend weights: ", flattened_weights)
             cluster_labels = self.kmeans.fit_predict(flattened_weights)
             # Step 3: Reshape labels back to SOM grid shape
             cluster_map = cluster_labels.reshape(self.width, self.height)
