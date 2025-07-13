@@ -43,13 +43,13 @@ som_project/
 │   │
 │   ├── api/
 │   │   ├── __init__.py
-│   │   ├── main.py
-│   │   └── routes.py
+│   │   ├── routes.py
+│   │   
 │   │
 │   └── visualizer/
 │       ├── __init__.py
 │       ├── plots.py
-│       └── label_overlay.py
+│       
 │
 ├── configs/
 │   └── train_config.yaml         # Configs for SOM + KMeans
@@ -62,12 +62,15 @@ som_project/
 ├── artifacts/
 │   ├── models/
 │   │   ├── som_model.pkl
+│   │   ├── minmax_scaler.pkl
 │   │   └── kmeans_model.pkl
 │   ├── weights/
+│   │   ├── som_weights.npy
 │   ├── metrics/
-│   │   ├── train_metrics.json
-│   │   └── clustering_metrics.json
+│   │   ├── metrics.json
 │   └── plots/
+│       ├── som_cluster.png
+│       ├── som_grid.png
 │
 ├── notebooks/
 ├── scripts/
@@ -75,6 +78,8 @@ som_project/
 │   └── workflows/
 │       └── deploy.yml
 ├── Dockerfile
+├── main.py                        # Entry point for fast api
+├── run_train_pipeline.py          # Entry point for training 
 ├── pyproject.toml
 ├── uv.lock
 └── README.md
@@ -82,6 +87,40 @@ som_project/
 
 ## System Architecture Diagram
 ![alt text](diagram-export-7-13-2025-12_23_11-PM.png)
+
+## ☁️ Cloud Run API (Prediction Endpoint)
+
+FastAPI app is deployed to Google Cloud Run and can be accessed using a public HTTPS URL.
+
+### 🔗 Base URL
+
+```bash
+https://som-api-178855485821.australia-southeast1.run.app
+```
+
+## 📬 End Point — `/api/predict` — Predict Cluster for Input Data
+
+### 🔧 Method - POST
+
+### 📤 Request Body (JSON)
+
+```json
+{
+    "age": 20,
+    "income":16,
+    "spending_score":6
+}
+```
+
+### ✅ Example Response
+
+```json
+{
+    "cluster": [
+        2
+    ]
+}
+```
 
 ## 🚀 How to Run Locally
 
