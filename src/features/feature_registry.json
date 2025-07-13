@@ -1,0 +1,10 @@
+{
+  "columns": [
+    "Age",
+    "Annual Income (k$)",
+    "Spending Score (1-100)"
+  ],
+  "scaler": "MinMaxScaler",
+  "output_path": "data/processed/feature_vectors.npy",
+  "scaler_path": "artifacts/models/minmax_scaler.pkl"
+}

@@ -1,0 +1,30 @@
+data:
+  raw_path: "data/raw/Mall_Customers.csv"
+
+feature-store:
+  input_columns: ["Age", "Annual Income (k$)", "Spending Score (1-100)"]
+  scaler: "MinMaxScaler"
+  output_path: "data/processed/feature_vectors.npy"
+  registry_path: "src/features/feature_registry.json"
+  scaler_model_path: "artifacts/models/minmax_scaler.pkl"
+
+som-model:
+  grid_size: [15, 15]
+  sigma: 1.0
+  learning_rate: 0.5
+  num_iterations: 5000
+  input_dim: 3
+
+kmeans-model:
+  n_clusters: 3
+  init: 10
+  random_state: 42
+
+artifacts:
+  model_path: "artifacts/models/som_model.pkl"
+  kmeans_model_path: "artifacts/models/kmeans_model.pkl"
+  weights_path: "artifacts/weights/som_weights.npy"
+  metrics_path: "artifacts/metrics/metrics.json"
+  clustering_metrics_path: "artifacts/metrics/clustering_metrics.json"
+  save_som_plot: "artifacts/plots/som_grid.png"
+  save_cluster_plot: "artifacts/plots/som_cluster.png"

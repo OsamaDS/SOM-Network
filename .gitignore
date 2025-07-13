@@ -9,3 +9,5 @@ wheels/
 # Virtual environments
 .venv
 service_account.json
+
+service_account.json
