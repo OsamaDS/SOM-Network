@@ -78,7 +78,7 @@ som_project/
 ├── pyproject.toml
 ├── uv.lock
 └── README.md
-
+```
 
 ## System Architecture Diagram
 ![alt text](diagram-export-7-13-2025-12_23_11-PM.png)
