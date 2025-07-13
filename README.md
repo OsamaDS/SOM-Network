@@ -82,3 +82,18 @@ som_project/
 
 ## System Architecture Diagram
 ![alt text](diagram-export-7-13-2025-12_23_11-PM.png)
+
+## 🚀 How to Run Locally
+
+### 1. Install dependencies
+
+```bash
+uv pip install --system .
+```
+
+### 1. Start FastAPI server
+
+```bash
+uvicorn main:app --reload --port 9000
+```
+
