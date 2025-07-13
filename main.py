@@ -17,13 +17,3 @@ app.add_middleware(
 app.include_router(router, prefix="/api")
 
 
-# def main():
-#     print("Hello from mantel-group!")
-
-
-#     run_pipeline()
-    
-
-
-# if __name__ == "__main__":
-#     main()
