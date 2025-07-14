@@ -1,6 +1,6 @@
 # 🧠 SOM + KMeans Clustering API
 
-This project implements a **Self-Organizing Map (SOM)** combined with **KMeans clustering** to group customer segments from the [Mall Customer Segmentation dataset](https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial). It is built with:
+This project implements a **Self-Organizing Map (SOM)** combined with **KMeans clustering** to group customer segments from the [Mall Customer Segmentation dataset](https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python?resource=download). It is built with:
 
 - ⚙️ FastAPI for serving predictions
 - 🧪 A modular MLOps pipeline (data ingestion → training → evaluation)
@@ -8,6 +8,30 @@ This project implements a **Self-Organizing Map (SOM)** combined with **KMeans c
 - ☁️ Deployed on Google Cloud Run
 
 ---
+
+## 🛠️ Top 6 Code Improvements Applied
+
+During the refactor and modularization, the following enhancements were made to improve code quality, reusability, and maintainability:
+
+1. **Encapsulation into a Class-Based Design**  
+   Transformed the SOM training logic from a monolithic function into an object-oriented class `SOM`, enabling reusability and state tracking.
+
+2. **Precomputation of Neuron Grid**  
+   Grid coordinates for the SOM topology were precomputed in the class constructor, improving performance and reducing redundant calculations in each iteration.
+
+3. **Parameter Flexibility via Constructor**  
+   Allowed external configuration of SOM hyperparameters (e.g., sigma, learning rate, number of iterations), supporting experimentation and tuning.
+
+4. **Logging for Training Lifecycle**  
+   Integrated logging at the start and end of the SOM training process for improved observability in production and debugging environments.
+
+5. **Separation of Concerns (Modularity)**  
+   Broke the overall system into well-organized modules: SOM core, KMeans clustering, feature pipeline, evaluation, and API routing — adhering to clean architecture principles.
+
+5. **CI/CD Deployment for Scalability and Automation**  
+   Implemented a GitHub Actions workflow that automates Docker builds and deploys the FastAPI service to Google Cloud Run. This allows for scalable, serverless deployments with automatic updates on code changes — ensuring fast, reliable, and reproducible model serving.
+
+
 
 ## 📁 Project Structure
 
@@ -85,8 +109,8 @@ som_project/
 └── README.md
 ```
 
-## System Architecture Diagram
-![alt text](diagram-export-7-13-2025-12_23_11-PM.png)
+## 🧱 System Architecture Diagram
+![alt text](notebooks/assets/SA-Diagram.png)
 
 ## ☁️ Cloud Run API (Prediction Endpoint)
 

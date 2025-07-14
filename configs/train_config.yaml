@@ -4,7 +4,7 @@ data:
 feature-store:
   input_columns: ["Age", "Annual Income (k$)", "Spending Score (1-100)"]
   scaler: "MinMaxScaler"
-  output_path: "data/processed/feature_vectors.npy"
+  output_path: "src/features/feature_store/feature_vectors.npy"
   registry_path: "src/features/feature_registry.json"
   scaler_model_path: "artifacts/models/minmax_scaler.pkl"
 

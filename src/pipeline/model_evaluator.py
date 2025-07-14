@@ -5,8 +5,11 @@ import json
 config = load_train_config()
 
 def evaluate_model(som_model, input_data, cluster_model):
+    
     """
+
     Evaluate SOM and optionally KMeans clustering.
+    
     """
     # Quantization Error
     mean_error = som_model.evaluate_som_model(input_data)
@@ -20,7 +23,6 @@ def evaluate_model(som_model, input_data, cluster_model):
         "quantization_error": mean_error
     }
 
-    # If KMeans is passed, evaluate it too
     if kmeans_model is not None:
     
         results["kmeans_inertia"] = kmeans_model.inertia_
