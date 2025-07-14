@@ -5,7 +5,7 @@ def get_logger(name: str = "som_pipeline") -> logging.Logger:
     logger.setLevel(logging.INFO)
 
     if not logger.handlers:
-        # Console handler
+        
         console_handler = logging.StreamHandler()
         formatter = logging.Formatter(
             "[%(asctime)s] [%(levelname)s] - %(message)s", "%Y-%m-%d %H:%M:%S"

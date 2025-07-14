@@ -4,13 +4,13 @@ data:
 feature-store:
   input_columns: ["Age", "Annual Income (k$)", "Spending Score (1-100)"]
   scaler: "MinMaxScaler"
-  output_path: "data/processed/feature_vectors.npy"
+  output_path: "src/features/feature_store/feature_vectors.npy"
   registry_path: "src/features/feature_registry.json"
   scaler_model_path: "artifacts/models/minmax_scaler.pkl"
 
 som-model:
   grid_size: [15, 15]
-  sigma: 1.0
+  sigma: 0.5
   learning_rate: 0.5
   num_iterations: 5000
   input_dim: 3

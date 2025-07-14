@@ -1,7 +1,6 @@
 import traceback
 import numpy as np
 from fastapi import APIRouter
-from pydantic import BaseModel, Field
 from src.predictor.predict import predict_cluster
 from src.api.schema import PredictRequest
 

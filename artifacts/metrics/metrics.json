@@ -1,6 +1,6 @@
 {
-  "quantization_error": 0.00572587487134622,
-  "kmeans_inertia": 15.743662125531161,
-  "silhouette_score": 0.3550298488226457,
-  "davies_bouldin": 1.0665146565786974
+  "quantization_error": 0.5557470510259269,
+  "kmeans_inertia": 0.27391348051245507,
+  "silhouette_score": 0.5752891306275854,
+  "davies_bouldin": 0.5244211753370713
 }

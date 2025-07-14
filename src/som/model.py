@@ -41,7 +41,7 @@ class SOM:
         logger.info("🧠 1- Training of SOM model started...")
         lambda_ = self.n_max_iterations / np.log(self.sigma)
         alpha0 = self.learning_rate
-        sigma0 = self.sigma
+        sigma0 = max(self.height, self.width) / 2
 
         for t in range(self.n_max_iterations):
             alpha_t = alpha0 * np.exp(-t / lambda_)
@@ -103,12 +103,3 @@ class SOM:
             
         return np.mean(errors)
 
-    def predict(self):
-
-        """
-        
-        This method predicts the output of the SOM model for the input data.
-        It returns the cluster assignments for each input data point.
-        
-        """
-        pass
